@@ -1,0 +1,1075 @@
+PlaceIQ AI  —  Product Requirements Document (PRD)    |    v1.0  •  Semester VI
+
+PlaceIQ AI
+
+Product Requirements Document
+
+AI-Powered Campus Placement Intelligence Platform
+
+
+
+Target Users: Students  •  HR / Recruiters  •  College Placement Cell (TPO)
+
+Version 1.0  |  Semester VI  |  MERN + HuggingFace + AWS
+
+Attribute
+
+Detail
+
+Document Type
+
+Product Requirements Document (PRD)
+
+Product Name
+
+PlaceIQ AI — Intelligent Campus Placement Platform
+
+Version
+
+1.0 — Semester VI Prototype Scope
+
+Target Users
+
+Students, HR Recruiters, College Placement Cell (TPO Officers)
+
+Core Problem
+
+Manual, subjective, data-blind campus placement processes that fail students and recruiters alike
+
+Solution Approach
+
+Multimodal AI profile analysis + ML readiness prediction + RL-based intelligent job matching
+
+Primary Tech Stack
+
+MERN (MongoDB, Express, React, Node) + Python FastAPI + Hugging Face + AWS + Jenkins
+
+Document Owner
+
+PlaceIQ AI Development Team
+
+
+
+
+
+
+1. Product Vision & Goals
+
+
+
+PlaceIQ AI replaces manual, guesswork-driven campus placement with a continuously learning AI system that understands every student holistically, predicts their career readiness, and matches them to roles with data-backed precision and full explainability.
+
+
+
+1.1  Product Vision Statement
+
+Vision:  To be the most intelligent campus placement platform that gives every student a personalised, data-driven path to their first job — while giving colleges and recruiters the precision analytics they need to make faster, fairer, and better placement decisions.
+
+
+
+1.2  Business Goals
+
+Goal ID
+
+Goal
+
+Success Indicator
+
+G1
+
+Increase student placement rates at pilot institutions
+
+≥ 15% improvement vs pre-PlaceIQ baseline within 2 placement cycles
+
+G2
+
+Reduce TPO manual shortlisting effort
+
+Time from drive creation to shortlist delivery < 2 minutes (vs hours manually)
+
+G3
+
+Give every student a personalised readiness score and skill gap roadmap
+
+100% of registered students have a readiness score and gap list populated within 24 hrs of profile completion
+
+G4
+
+Provide recruiters with a precision candidate shortlist from any JD
+
+Ranked shortlist generated in < 10 seconds; recruiter satisfaction score ≥ 4/5
+
+G5
+
+Build a learning system that improves with each placement cycle
+
+Model prediction accuracy improves measurably each semester via outcome feedback loop
+
+G6
+
+Ensure full data privacy compliance for student PII
+
+Zero PII exposure incidents; all data encrypted at rest and in transit
+
+
+
+1.3  Non-Goals (Out of Scope for v1.0)
+
+Full RL agent with live policy updates (deferred to v2.0 / Semester VII)
+
+Audio interview feedback processing (text-only in v1.0)
+
+Integration with external ATS (Applicant Tracking Systems)
+
+Mobile native app (iOS/Android) — mobile-responsive web only
+
+Multi-institution SaaS multi-tenancy architecture
+
+Automated salary negotiation or offer management
+
+
+
+
+
+
+2. Target Users & Personas
+
+
+
+
+
+Persona 1 — The Student
+
+Attribute
+
+Detail
+
+Name / Role
+
+Aryan Mehta, 3rd-year B.Tech student (Computer Science)
+
+Goal
+
+Get placed in a good tech company before graduation; understand exactly what skills he needs to improve
+
+Pain Point
+
+No idea why he keeps getting rejected; no feedback; doesn't know which companies to target
+
+What PlaceIQ gives him
+
+A readiness score, a personalised skill gap list, a ranked drive list showing his match probability for each role
+
+Tech Comfort
+
+High — comfortable with web apps; expects fast, clean UI
+
+
+
+Persona 2 — The TPO Officer (Placement Cell)
+
+Attribute
+
+Detail
+
+Name / Role
+
+Dr. Priya Sharma, Training & Placement Officer at a tier-2 engineering college
+
+Goal
+
+Successfully place as many students as possible; impress visiting companies with an organised, professional process
+
+Pain Point
+
+Spends 2–3 days manually shortlisting students for each drive; no data on which students are truly ready
+
+What PlaceIQ gives her
+
+Instant AI-ranked shortlist on drive creation; analytics dashboard showing institutional placement health; outcome tracking
+
+Tech Comfort
+
+Medium — needs intuitive UI, no complex setup
+
+
+
+Persona 3 — The HR / Recruiter
+
+Attribute
+
+Detail
+
+Name / Role
+
+Rohan Kapoor, Campus Recruitment Manager at a mid-size tech company
+
+Goal
+
+Find the best-fit candidates quickly during campus drives; reduce time spent screening irrelevant resumes
+
+Pain Point
+
+Receives 200+ applications; most don't match the JD; manual screening wastes 2–3 days per drive
+
+What PlaceIQ gives him
+
+JD text submission → instant ranked candidate list with skill match scores and plain-English fit explanations
+
+Tech Comfort
+
+High — uses multiple HR tools daily; expects fast, exportable results
+
+
+
+
+
+
+3. Feature List
+
+
+
+Features are mapped directly to the 10 Functional Requirements (FR1–FR10) and organised by user portal.
+
+
+
+3.1  Student Portal Features
+
+Feature
+
+Maps to FR
+
+Description
+
+Priority
+
+Registration & Login
+
+FR1
+
+Email + password auth with JWT. Protected routes, session persistence, logout.
+
+P0 — Must Have
+
+Resume Upload & Skill Parsing
+
+FR2
+
+Upload PDF/DOCX resume. NLP pipeline extracts and displays skill tags automatically.
+
+P0 — Must Have
+
+Readiness Score Dashboard
+
+FR4
+
+0–100 circular gauge showing composite placement readiness. Updates on new data. Shows trend sparkline.
+
+P0 — Must Have
+
+Skill Gap Analyser
+
+FR5
+
+Select a target role. View per-domain gap percentages as bar chart. Get actionable improvement suggestions.
+
+P0 — Must Have
+
+Drive Discovery Feed
+
+FR6
+
+List of open placement drives ranked by the student's personal match probability. Shows eligibility status.
+
+P1 — Should Have
+
+Interview Feedback Viewer
+
+FR3
+
+Students can view competency classifications from their last mock interview evaluations.
+
+P1 — Should Have
+
+AI Match Explanation
+
+FR7
+
+For each applied drive, shows plain-English reason for match rank (e.g., 'Strong Python, Low DSA').
+
+P1 — Should Have
+
+Profile Completeness Indicator
+
+FR2,FR4
+
+Progress bar showing how complete the student profile is. Prompts missing data uploads.
+
+P2 — Nice to Have
+
+
+
+3.2  TPO / Placement Cell Portal Features
+
+Feature
+
+Maps to FR
+
+Description
+
+Priority
+
+Drive Creation & Management
+
+FR6
+
+Create drives with JD, eligibility filters, deadline. Publish to student feed. Track status.
+
+P0 — Must Have
+
+AI-Ranked Shortlist
+
+FR6,FR7
+
+On drive creation, instantly receive a ranked list of eligible students with composite scores and match explanations.
+
+P0 — Must Have
+
+Outcome Recording
+
+FR9
+
+Mark offer/no-offer results per student after each drive. Feeds back into the AI model.
+
+P0 — Must Have
+
+Analytics Dashboard
+
+FR10
+
+Charts: placement rate trend, avg readiness score, top-hiring companies, domain-wise placement breakdown.
+
+P1 — Should Have
+
+Student Profile Browser
+
+FR4,FR5
+
+View any student's full profile: skill tags, readiness score, gap list, academic summary.
+
+P1 — Should Have
+
+Interview Feedback Entry
+
+FR3
+
+Submit evaluator feedback text for mock interviews. System auto-classifies competency tags.
+
+P1 — Should Have
+
+Drive History & Audit Log
+
+FR9,FR10
+
+Full history of past drives, shortlists, offers, and AI decision logs for compliance and review.
+
+P2 — Nice to Have
+
+
+
+3.3  HR / Recruiter Portal Features
+
+Feature
+
+Maps to FR
+
+Description
+
+Priority
+
+Company Profile Setup
+
+FR8
+
+One-time company registration and profile setup for recruiters.
+
+P0 — Must Have
+
+JD Submission & Candidate Matching
+
+FR8
+
+Submit job description text. Receive instant AI-ranked candidate list with match scores.
+
+P0 — Must Have
+
+Candidate Detail View
+
+FR4,FR5,FR7
+
+View full student profile: skill card, readiness score, gap summary, and AI fit explanation.
+
+P1 — Should Have
+
+Shortlist Export
+
+FR8
+
+Export ranked candidate list as CSV/PDF for internal review.
+
+P1 — Should Have
+
+Interview Scheduling
+
+FR8
+
+Coordinate interview slots and send notifications. (Basic version in v1.0)
+
+P2 — Nice to Have
+
+
+
+
+
+
+4. User Stories
+
+
+
+
+
+Story ID
+
+Persona
+
+User Story
+
+Acceptance Criteria
+
+US-01
+
+Student
+
+As a student, I want to register and log in with my college email so that I can securely access my placement dashboard.
+
+Given valid credentials → JWT token issued + redirect to dashboard. Given invalid → error shown. Session persists across browser refresh.
+
+US-02
+
+Student
+
+As a student, I want to upload my resume so that the system can automatically extract my skills and build my profile.
+
+PDF/DOCX accepted. Upload completes < 5s. Skill tags displayed within 15s of upload. At least 5 skill tags shown for any standard resume.
+
+US-03
+
+Student
+
+As a student, I want to see my placement readiness score so that I know how prepared I am for upcoming drives.
+
+Score shown as 0–100 with colour band. Score present within 30s of profile completion. Tooltip explains the score composition.
+
+US-04
+
+Student
+
+As a student, I want to see my skill gaps for a target role so that I know exactly what to improve.
+
+Role selector shows ≥ 5 roles. Gap list shows per-domain %. Each gap entry has an improvement suggestion. Recalculates within 10s of role change.
+
+US-05
+
+Student
+
+As a student, I want to browse placement drives ranked by my match probability so I can apply to the best-fit companies first.
+
+Drive list shows match % per drive. Drives sorted by match score descending. Eligibility badge shown. Student can apply in 1 click.
+
+US-06
+
+Student
+
+As a student, I want to see a plain-English explanation of why I was ranked for a drive so I understand the AI's decision.
+
+Each drive application shows a 1–2 sentence explanation. Explanation references at least 2 specific factors (e.g., skill match, readiness score).
+
+US-07
+
+TPO Officer
+
+As a TPO officer, I want to create a placement drive and immediately get an AI-ranked shortlist so I can share it with the company.
+
+Drive creation form ≤ 5 fields. Shortlist appears within 10s of publish. At least top-10 candidates shown with scores. Exportable as CSV.
+
+US-08
+
+TPO Officer
+
+As a TPO officer, I want to record offer/rejection outcomes after each drive so that the system can learn and improve future rankings.
+
+Outcome entry UI per student in shortlist. Bulk outcome submission supported. Confirmation shown. Outcome stored with timestamp.
+
+US-09
+
+TPO Officer
+
+As a TPO officer, I want to view an analytics dashboard so I can report placement performance to the college administration.
+
+Dashboard loads in < 3s. Shows: placement rate %, avg readiness score, top 5 hiring companies, domain-wise chart. Filterable by academic year.
+
+US-10
+
+TPO Officer
+
+As a TPO officer, I want to submit interview feedback text and have it auto-classified into competency categories.
+
+Feedback text input accepted. Competency tags shown within 5s. Tags include ≥ 3 categories. Tags saved to student profile.
+
+US-11
+
+HR Recruiter
+
+As a recruiter, I want to submit a job description and instantly receive a ranked list of matching students.
+
+JD text accepted. Ranked list returned in < 10s. Each candidate shows: name, match score, top 3 skills, readiness score.
+
+US-12
+
+HR Recruiter
+
+As a recruiter, I want to view a detailed profile for any shortlisted candidate to make an informed selection.
+
+Profile page shows: skill radar chart, readiness gauge, gap list summary, academic highlights, AI fit explanation.
+
+US-13
+
+HR Recruiter
+
+As a recruiter, I want to export the shortlist as a CSV so I can share it with my hiring team.
+
+Export button visible on shortlist page. CSV downloads within 2s. Includes: rank, name, score, top skills, email.
+
+US-14
+
+All Users
+
+As any user, I want my personal data to be stored securely and never visible to unauthorised parties.
+
+All API routes JWT-protected. RBAC enforced (student cannot access TPO routes). PII encrypted at rest in S3 and MongoDB.
+
+
+
+
+
+
+5. Recommended Tech Stack with Justification
+
+
+
+Every technology choice is driven by three constraints: (1) a student team with limited time, (2) a pretrained-model-first AI approach to avoid training from scratch, and (3) a cloud-deployable prototype demonstrable within Semester VI.
+
+
+
+5.1  Tech Stack at a Glance
+
+Frontend:  React.js 18 + Redux Toolkit + Tailwind CSS + Recharts
+
+Backend:  Node.js 20 + Express.js + Bull (job queues) + Redis
+
+Auth:  JSON Web Tokens (JWT) + bcrypt + RBAC middleware
+
+Database:  MongoDB Atlas (primary) + Redis (cache/queues) + AWS S3 (files)
+
+AI / ML:  Python FastAPI + Hugging Face Transformers (Sentence-BERT) + XGBoost + scikit-learn
+
+Deployment:  AWS EC2 + S3 + CloudFront + MongoDB Atlas + Docker + Jenkins CI/CD
+
+
+
+5.2  Detailed Justification
+
+
+
+Layer
+
+Choice
+
+Justification
+
+Frontend
+
+React.js 18
+
+Component-driven architecture maps perfectly to PlaceIQ's three distinct portals (Student, TPO, Recruiter). React's virtual DOM ensures fast re-renders when AI result data updates. Massive ecosystem (Redux, Recharts, React Router) covers every UI need. Team familiarity with React reduces learning curve in a time-constrained semester.
+
+State Mgmt
+
+Redux Toolkit
+
+Auth tokens, AI score results, and drive state must persist across multiple pages without prop drilling. Redux Toolkit's modern slice pattern is far less boilerplate than classic Redux and integrates cleanly with React 18 concurrent features.
+
+Styling
+
+Tailwind CSS
+
+Utility-first CSS eliminates writing custom CSS files for every component. Produces consistent, responsive layouts rapidly — critical when four developers need to build UIs in parallel without style conflicts. No design system setup needed.
+
+Charts
+
+Recharts
+
+Native React charting library — no separate chart DOM to manage. Provides radar charts (skill profile), bar charts (gap analysis), line charts (readiness trend), and doughnut charts (analytics) all in one library with clean, minimal default styling.
+
+Backend
+
+Node.js + Express
+
+JavaScript on both frontend and backend means the full-stack developers use one language across the entire application. Express.js's middleware-first architecture is ideal for layering JWT auth, RBAC, rate limiting, and input validation. Node's async I/O handles concurrent resume uploads and API calls efficiently.
+
+Job Queues
+
+Bull + Redis
+
+Resume embedding and score computation are slow (2–5s). Running them synchronously would block the API response. Bull queues these as background jobs, decoupling the user-facing API from the AI processing pipeline. Redis backs the queue and also caches frequently-read score results.
+
+Auth
+
+JWT + bcrypt
+
+Stateless JWT tokens are ideal for a multi-portal app where React, Node, and Python services all need to validate identity without shared server state. bcrypt provides industry-standard password hashing. Custom RBAC middleware on Express enforces role boundaries (student vs TPO vs recruiter) at the route level.
+
+Database
+
+MongoDB Atlas
+
+Resume data, skill profiles, embedding vectors, and drive records all have variable, nested structures that don't fit cleanly into SQL schemas. MongoDB's document model accommodates this naturally. Atlas provides managed cloud hosting with built-in encryption, automated backups, and Atlas Search for full-text queries — all without DBA effort.
+
+File Storage
+
+AWS S3
+
+Resume PDFs must be stored outside the database (binary blobs degrade MongoDB performance). S3 provides scalable, secure object storage with pre-signed URLs for direct access control. AWS IAM policies ensure only the backend service can read student files.
+
+AI Service
+
+Python FastAPI
+
+Python is the undisputed language of AI/ML — Hugging Face, XGBoost, and scikit-learn all have first-class Python support. FastAPI is async, auto-documents endpoints via OpenAPI, and starts in < 3 seconds. Separation from Node.js means AI engineers work in their native environment without touching the web stack.
+
+NLP Model
+
+Hugging Face Sentence-BERT (all-MiniLM-L6-v2)
+
+Using a pretrained model eliminates training from scratch — critical given the semester time constraint. all-MiniLM-L6-v2 is the industry standard for semantic sentence similarity: 384-dim output, < 80 MB download, runs on CPU in < 200ms per document, and produces state-of-the-art semantic matching quality for skill and JD comparison tasks.
+
+ML Model
+
+XGBoost
+
+Gradient-boosted trees outperform logistic regression on tabular feature vectors (CGPA, coding score, embedding PCA, backlogs) with limited training data. XGBoost trains in seconds on 500-row mock datasets, produces calibrated probabilities, and can be serialised to a 50 KB .pkl file for fast FastAPI inference.
+
+Explainability
+
+SHAP / Rule engine
+
+SHAP provides mathematically rigorous feature attribution for the XGBoost model. For the Semester VI PoC, a lightweight rule-based label engine (top-2 feature names from feature_weights dict) produces readable explanations without the full SHAP overhead. Full SHAP integration is the Semester VII upgrade.
+
+Containers
+
+Docker
+
+Docker ensures that the Node.js API and Python FastAPI service run identically on every developer's machine, in the Jenkins CI environment, and on AWS EC2. Eliminates 'works on my machine' problems. docker-compose.yml defines the full local stack in one file.
+
+CI/CD
+
+Jenkins + GitHub
+
+Jenkins integrates natively with GitHub webhooks. Every push to the main branch automatically triggers: lint → unit tests → Docker build → image push to AWS ECR → deploy to EC2. The Jenkinsfile lives in the repo for full auditability. Blue-green deployment ensures zero-downtime PoC demos.
+
+Cloud
+
+AWS EC2 + CloudFront
+
+EC2 t3.medium hosts both Docker containers within budget for a student PoC. CloudFront CDN serves the React build with < 100ms latency globally. AWS services integrate natively (S3, IAM, ACM for TLS) without multi-vendor complexity.
+
+
+
+
+
+
+6. Success Metrics
+
+
+
+Success metrics are split into three categories: PoC Demo Metrics (validated at the Semester VI demo), Product Metrics (measured in production after institutional deployment), and AI Quality Metrics (measured during and after training).
+
+
+
+6.1  PoC Demo Metrics — Semester VI
+
+Metric
+
+Target
+
+How Measured
+
+Resume skill extraction quality
+
+≥ 5 correct skill tags extracted from any standard engineering resume
+
+Live demo with 3 real resumes
+
+Readiness score generation speed
+
+Score displayed within 5 seconds of feature computation trigger
+
+Stopwatch during demo
+
+Skill gap accuracy
+
+Gap percentages non-zero and directionally correct vs manual review for 3 test profiles
+
+Manual comparison
+
+Shortlist generation speed
+
+Ranked shortlist for a drive returned in < 10 seconds
+
+Network tab / stopwatch
+
+Explainability label presence
+
+Every ranked candidate has a non-empty, human-readable explanation label
+
+Visual inspection
+
+End-to-end flow completeness
+
+All 6 core PoC deliverables (D1–D6) completable without errors in a live demo
+
+Demo run-through
+
+CI/CD demonstration
+
+A code commit triggers Jenkins build and deploys to EC2 in < 8 minutes
+
+Live Jenkins console
+
+
+
+6.2  Product Metrics — Post Deployment
+
+Metric
+
+Target
+
+Tracking Method
+
+Student profile completion rate
+
+≥ 80% of registered students complete resume upload + academic data within 7 days
+
+MongoDB user funnel analytics
+
+TPO shortlisting time
+
+< 2 minutes from drive creation to shortlist review ready
+
+Timestamp diff: drive created → shortlist viewed
+
+Recruiter shortlist satisfaction
+
+≥ 4/5 average score on post-drive recruiter survey
+
+In-app survey (5-point scale)
+
+Placement rate lift
+
+≥ 15% improvement over institutional baseline in first full placement cycle
+
+Outcome collection vs. historical records
+
+Skill gap engagement
+
+≥ 60% of students view their skill gap page at least once per week
+
+Event tracking (React + backend logs)
+
+Drive application conversion
+
+≥ 40% of students who view a recommended drive apply to it
+
+MongoDB drive application funnel
+
+System uptime
+
+≥ 99% during placement season (Oct–Mar)
+
+AWS CloudWatch uptime alarm
+
+API response time (p95)
+
+< 500ms for all non-AI endpoints; < 3s for AI inference endpoints
+
+CloudWatch / Express response time middleware
+
+
+
+6.3  AI Model Quality Metrics
+
+Metric
+
+Target
+
+Measurement Approach
+
+Placement probability prediction accuracy
+
+≥ 70% accuracy on held-out test split (Sem VI mock data)
+
+XGBoost evaluate() on 20% test split
+
+Skill embedding semantic relevance
+
+Cosine similarity between similar roles (e.g., SDE vs Backend Dev) > 0.75
+
+Manual sanity check on 10 role pairs
+
+Ranking precision@5
+
+≥ 3 of top-5 shortlisted candidates receive offers in pilot drives
+
+Compare shortlist rank vs actual outcomes
+
+Explainability label coherence
+
+100% of generated labels reference a real feature; 0% generic fallback labels
+
+Automated string validation test
+
+Feedback classification coverage
+
+≥ 3 competency tags extracted from any evaluator feedback text ≥ 50 words
+
+Test on 20 sample feedback entries
+
+Model retrain improvement
+
+Prediction accuracy improves by ≥ 2% after retraining on 50+ new outcome records
+
+Before/after accuracy comparison
+
+
+
+
+
+
+7. Constraints & Assumptions
+
+
+
+
+
+7.1  Constraints
+
+Constraint Type
+
+Description
+
+Time
+
+Semester VI prototype must be demo-ready within 20 weeks. Full production features deferred to Semester VII.
+
+Team Size
+
+4 developers (2 full-stack, 2 AI/ML). No dedicated DevOps, Designer, or QA engineer.
+
+Budget
+
+AWS Free Tier + Atlas M0 free cluster for development. EC2 t3.medium (~$30/month) for demo deployment.
+
+AI Models
+
+No custom model training from scratch. Only pretrained models from Hugging Face are used in v1.0.
+
+Data
+
+No real institutional student data available for training. Synthetic mock data (500 records) used for ML model training.
+
+Security
+
+Basic security measures (JWT, bcrypt, HTTPS, S3 encryption) implemented. Full pen-testing and compliance audit deferred to v2.0.
+
+Audio Processing
+
+Audio interview feedback transcription (Whisper) is out of scope for v1.0. Text-only feedback accepted.
+
+
+
+7.2  Assumptions
+
+Students have a professional resume in PDF or DOCX format available for upload.
+
+The college has a designated TPO officer who will manage drives and enter outcome data.
+
+Recruiters are willing to submit a plain-text job description to the system.
+
+The institution can provide basic academic record data (CGPA, backlogs) for the student profiles.
+
+AWS Free Tier and MongoDB Atlas M0 are sufficient for the Semester VI demo with up to 100 concurrent test users.
+
+The Hugging Face all-MiniLM-L6-v2 model produces acceptable semantic similarity quality without domain fine-tuning for the PoC.
+
+Internet connectivity is available at the demo venue for the live AWS deployment demonstration.
+
+
+
+8. Risks & Mitigations
+
+
+
+
+
+Risk
+
+Likelihood
+
+Impact
+
+Mitigation
+
+Hugging Face BERT embedding quality insufficient for small/poor resumes
+
+Medium
+
+High
+
+Add keyword-based skill extraction fallback. Flag low-quality resumes to student for improvement.
+
+XGBoost model inaccurate with only 500 mock training records
+
+High
+
+Medium
+
+Use rule-based score as baseline. Clearly label score as 'mock data estimate' in PoC UI. Replace with real data in Sem VII.
+
+FastAPI AI service latency > 5s under load
+
+Medium
+
+High
+
+Add Redis caching for repeated requests. Pre-load model at startup. Use Bull async queue to avoid UI blocking.
+
+Jenkins CI/CD pipeline setup delays demo
+
+Medium
+
+Medium
+
+Keep basic GitHub Actions as fallback. Jenkins is a nice-to-have for PoC demo; core features take priority.
+
+MongoDB Atlas M0 free tier query limits
+
+Low
+
+Medium
+
+Implement Mongoose query optimisation and indexing from Week 1. Upgrade to M10 ($9/mo) if limits hit during demo.
+
+Team skill gap: ML engineers unfamiliar with FastAPI
+
+Medium
+
+Medium
+
+Dedicate Week 1 to FastAPI tutorial. Use official FastAPI docs + HuggingFace quickstart. Simple endpoints first.
+
+API contract disagreements between frontend and backend developers
+
+Low
+
+High
+
+Publish and freeze Postman collection on Day 3 of Week 1. All changes require team vote. Mock layer prevents blocking.
+
+
+
+
+
+
+9. Glossary
+
+
+
+
+
+Term
+
+Definition
+
+MERN Stack
+
+MongoDB, Express.js, React.js, Node.js — the full JavaScript web development stack used for PlaceIQ AI.
+
+BERT / Sentence-BERT
+
+Bidirectional Encoder Representations from Transformers — a pretrained NLP model that encodes text as dense semantic vectors. Sentence-BERT is a variant optimised for sentence-level similarity.
+
+Embedding
+
+A dense numerical vector (array of floats) that represents text semantically. Similar texts have similar embeddings (high cosine similarity).
+
+Cosine Similarity
+
+A metric measuring the angle between two vectors. Score of 1.0 = identical direction (perfect match); 0.0 = no similarity.
+
+XGBoost
+
+Extreme Gradient Boosting — a high-performance gradient-boosted decision tree algorithm used for PlaceIQ's readiness score prediction.
+
+JWT (JSON Web Token)
+
+A compact, signed token used to authenticate users across stateless API requests. Contains user ID and role encoded and signed.
+
+RBAC
+
+Role-Based Access Control — a security model that grants permissions based on user role (student, TPO, recruiter, admin).
+
+Bull
+
+A Node.js library for creating and managing Redis-backed background job queues. Used for async AI inference triggers.
+
+SHAP
+
+SHapley Additive exPlanations — a method to explain ML model predictions by attributing each feature's contribution to the output.
+
+RL Agent
+
+Reinforcement Learning Agent — an AI component that learns a matching policy by receiving reward signals (placement outcomes) and updating its decision strategy over time.
+
+TPO
+
+Training & Placement Officer — the college staff member responsible for managing campus placements.
+
+FastAPI
+
+A modern, high-performance Python web framework for building APIs with automatic OpenAPI documentation.
+
+CI/CD
+
+Continuous Integration / Continuous Deployment — automated pipeline that builds, tests, and deploys code on every commit.
+
+
+
+
+
+PlaceIQ AI — Product Requirements Document v1.0
+
+Goals  •  User Stories  •  Features  •  Tech Stack  •  Success Metrics  •  Risks
+
+
+
+PlaceIQ AI  •  PRD  •  Confidential — Internal Academic Use

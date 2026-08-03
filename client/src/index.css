@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-dark-900 text-gray-100 font-body;
+    background-image: linear-gradient(rgba(79,142,247,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,142,247,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  * { scrollbar-width: thin; scrollbar-color: #2a3350 #0a0d14; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #0a0d14; }
+  ::-webkit-scrollbar-thumb { background: #2a3350; border-radius: 3px; }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-dark-700/80 border border-white/5 backdrop-blur-sm rounded-xl;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+  .gold-border {
+    @apply border border-gold-500/30;
+  }
+  .btn-gold {
+    @apply bg-gold-500 hover:bg-gold-400 text-dark-900 font-semibold font-display uppercase tracking-wider transition-all duration-200;
+  }
+  .btn-outline {
+    @apply border border-white/10 hover:border-white/30 text-gray-300 hover:text-white transition-all duration-200;
+  }
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-200 cursor-pointer;
+  }
+  .sidebar-link.active {
+    @apply text-gold-400 bg-gold-500/10 border border-gold-500/20;
+  }
+  .stat-card {
+    @apply glass-card p-4 flex flex-col gap-1;
+  }
+  .skill-bar-track {
+    @apply h-1.5 bg-white/5 rounded-full overflow-hidden;
+  }
+  .skill-bar-fill {
+    @apply h-full rounded-full transition-all duration-700;
+  }
+  .badge {
+    @apply text-xs px-2 py-0.5 rounded-full font-mono font-medium;
+  }
+  .badge-python { @apply bg-blue-500/20 text-blue-400; }
+  .badge-react { @apply bg-cyan-500/20 text-cyan-400; }
+  .badge-ml { @apply bg-purple-500/20 text-purple-400; }
+  .badge-sql { @apply bg-green-500/20 text-green-400; }
+  .badge-node { @apply bg-lime-500/20 text-lime-400; }
+  .badge-tf { @apply bg-orange-500/20 text-orange-400; }
+  .badge-excel { @apply bg-emerald-500/20 text-emerald-400; }
+  .input-dark {
+    @apply w-full bg-dark-600 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/20 transition-all;
+  }
+  .page-enter {
+    animation: pageEnter 0.35s ease forwards;
+  }
+  @keyframes pageEnter {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .pulse-ring {
+    animation: pulseRing 2s ease-in-out infinite;
+  }
+  @keyframes pulseRing {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(245,166,35,0.3); }
+    50% { box-shadow: 0 0 0 12px rgba(245,166,35,0); }
+  }
+  .shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+}

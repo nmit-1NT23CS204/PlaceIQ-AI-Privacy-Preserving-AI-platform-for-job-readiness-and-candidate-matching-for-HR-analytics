@@ -1,0 +1,180 @@
+PlaceIQ AI  —  Functional Requirements Specification (SMART)    |    Semester VI Prototype
+
+Functional Requirements — SMART Compliance Table
+
+Project: PlaceIQ AI  •  AI-Powered Campus Placement Intelligence Platform  •  MERN + HuggingFace + AWS
+
+Format: Actor + Action + System Response  |  SMART: Specific · Measurable · Achievable · Relevant · Time-Bound
+
+Req
+ID
+
+Functional Requirement (SMART)
+
+SMART Justification
+
+Expected Outcome
+
+FR1
+
+The system shall allow students to register and log in using their institutional email and password.
+
+Specific: Email-based login & registration
+
+Measurable: Auth success/failure validated
+
+Achievable: Standard JWT auth module
+
+Relevant: Entry point for all student features
+
+Time-Bound: Implemented in Sem VI prototype
+
+Students can securely access the platform. Unauthorised users cannot access any protected features.
+
+FR2
+
+The system shall allow students to upload their resume in PDF or DOCX format and display a parsed skill profile.
+
+Specific: Resume upload + NLP parsing
+
+Measurable: Skill tags extracted & displayed
+
+Achievable: Hugging Face BERT embedding pipeline
+
+Relevant: Core Layer 1 multimodal input
+
+Time-Bound: Prototype parsing in Sem VI
+
+A structured skill profile with domain tags (e.g., Python, SQL, ML) is auto-generated from the uploaded resume.
+
+FR3
+
+The system shall process interview feedback text submitted by evaluators and classify it into competency categories.
+
+Specific: Text feedback → competency tags
+
+Measurable: Categories assigned per submission
+
+Achievable: Pretrained sentiment/NLP model (HuggingFace)
+
+Relevant: Layer 1 multimodal feedback input
+
+Time-Bound: Basic classification in Sem VI build
+
+Evaluator notes are automatically labelled with competencies (e.g., Communication, Problem-Solving, Technical Depth) and stored in the student profile.
+
+FR4
+
+The system shall display a placement readiness score for each student based on their academic record, coding performance, and resume data.
+
+Specific: Composite readiness score displayed
+
+Measurable: Score from 0–100, updated on new data
+
+Achievable: ML scoring pipeline (XGBoost/LightGBM)
+
+Relevant: Core Layer 2 predictive output
+
+Time-Bound: Scoring dashboard ready in Sem VI
+
+Students and TPO officers see a dynamically calculated readiness score, enabling data-backed placement decisions.
+
+FR5
+
+The system shall identify and display a prioritised skill gap list for each student relative to a selected target job role.
+
+Specific: Gap list per student per role
+
+Measurable: Gap % shown per skill domain
+
+Achievable: Vector distance from role profile
+
+Relevant: Layer 2 — skill gap analysis module
+
+Time-Bound: Gap output functional in Sem VI
+
+Students receive a ranked list of missing skills (e.g., 'Data Structures: 40% gap') with actionable improvement suggestions.
+
+FR6
+
+The system shall allow TPO officers to create a placement drive and receive an AI-ranked shortlist of eligible students.
+
+Specific: Drive creation + ranked candidate list
+
+Measurable: Ranked list generated on drive publish
+
+Achievable: Role-wise ranking engine (Layer 2)
+
+Relevant: Primary TPO workflow automation
+
+Time-Bound: Shortlisting feature in Sem VI build
+
+On publishing a drive, the TPO officer receives a prioritised shortlist of matching students ranked by composite AI score.
+
+FR7
+
+The system shall match students to open job drives using an AI agent and provide a human-readable explanation for each match decision.
+
+Specific: RL agent matching + decision explanation
+
+Measurable: Explanation generated per match output
+
+Achievable: RL agent + SHAP explainability (Layer 3)
+
+Relevant: Superior differentiator vs. existing tools
+
+Time-Bound: Basic agent + logs in Sem VI prototype
+
+Each AI-generated match is accompanied by a plain-language explanation (e.g., 'Matched due to high ML score and coding rank') visible to students and TPO officers.
+
+FR8
+
+The system shall allow recruiters to submit a job description and view a ranked list of matching student candidates.
+
+Specific: JD submission → candidate ranking
+
+Measurable: Ranked list returned within 10 seconds
+
+Achievable: Embedding similarity + ranker API
+
+Relevant: Recruiter-facing core feature
+
+Time-Bound: Recruiter console functional in Sem VI
+
+Recruiters receive a precision shortlist of candidates with skill match scores, reducing manual screening effort.
+
+FR9
+
+The system shall record placement outcomes (offer/no-offer) and update the AI model's matching behaviour based on accumulated results.
+
+Specific: Outcome logging + model feedback loop
+
+Measurable: Outcome records stored; retraining triggered
+
+Achievable: RL reward signal pipeline (Layer 3)
+
+Relevant: Enables continuous improvement over time
+
+Time-Bound: Feedback loop integrated in Sem VI
+
+Placement outcomes feed back into the RL agent, making each subsequent drive's matching more accurate than the previous one.
+
+FR10
+
+The system shall display an analytics dashboard to TPO officers showing placement rate trends, average readiness scores, and top-hiring companies.
+
+Specific: Charts for rate, readiness & company data
+
+Measurable: Data visualised for current + past drives
+
+Achievable: Recharts/Chart.js on React dashboard
+
+Relevant: Institutional performance visibility
+
+Time-Bound: Dashboard with mock data in Sem VI
+
+TPO officers gain data-backed insights into institutional placement health without manual report compilation.
+
+Notes: All requirements are written in the format — The system shall [action] [actor context] — and are scoped to a Semester VI prototype/proof-of-concept. Technology-specific implementation details are intentionally excluded from requirement statements per SMART FR writing standards.
+
+Confidential — Internal Academic Use Only

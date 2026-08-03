@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+transformers
+sentence-transformers
+scikit-learn
+xgboost
+python-multipart
+pandas
+numpy
+pypdf
+python-docx

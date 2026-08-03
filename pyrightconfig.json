@@ -1,0 +1,7 @@
+{
+  "venvPath": "f:/PlaceIQ/ai-service",
+  "venv": "venv",
+  "extraPaths": [
+    "f:/PlaceIQ/ai-service/venv/Lib/site-packages"
+  ]
+}
